@@ -3,6 +3,7 @@ package me.poma123.pomaexpansion;
 import io.github.thebusybiscuit.slimefun4.core.categories.LockedCategory;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.items.androids.AdvancedFarmerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.setup.SlimefunItemSetup;
@@ -26,16 +27,13 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        // Read something from your config.yml
-        //Config cfg = new Config(this);
 
+        //Registering category
         ItemStack categoryItem = new CustomItem(SlimefunItems.PROGRAMMABLE_ANDROID, "&cPomaExpansion");
         LockedCategory category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
-
-
+        category.register();
 
         // Registering items
-
         SlimefunItemStack advancedWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&cAdvanced Programmable Android &7(Woodcutter)", "", "&8\u21E8 &7Function: Woodcutting", "&8\u21E8 &7Fuel Efficiency: 1.5x");
         SlimefunItemStack advancedMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&cAdvanced Programmable Android &7(Miner)", "", "&8\u21E8 &7Function: Mining", "&8\u21E8 &7Fuel Efficiency: 1.5x");
 
@@ -45,7 +43,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
 
         new MinerAndroid(category, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
 
             @Override
             public float getFuelEfficiency() {
@@ -61,7 +59,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         .register(this);
 
         new WoodcutterAndroid(category, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
 
             @Override
             public float getFuelEfficiency() {
@@ -77,7 +75,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         .register(this);
 
         new MinerAndroid(category, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), advancedMinerAndroid, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
 
             @Override
             public float getFuelEfficiency() {
@@ -93,7 +91,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         .register(this);
 
         new WoodcutterAndroid(category, empoweredWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), advancedWoodcutterAndroid, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
 
             @Override
             public float getFuelEfficiency() {
@@ -107,10 +105,24 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
         }
         .register(this);
-        
+
+
+        new AdvancedFarmerAndroid(category, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+
+            @Override
+            public float getFuelEfficiency() {
+                return 8F;
+            }
+
+            @Override
+            public int getTier() {
+                return 3;
+            }
+
+        }
+        .register(this);
     }
-
-
 
 
     @Override
@@ -121,7 +133,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
     @Override
     public String getBugTrackerURL() {
         // You can return a link to your Bug Tracker instead of null here
-        return "https://github.com/poma123/PomaExpansion/issues";
+        return "https://github.com/TheOld-Crafters/PomaExpansion/issues";
     }
 
     @Override
