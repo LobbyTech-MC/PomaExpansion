@@ -107,7 +107,6 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
         }
         .register(this);
-
         
     }
 
