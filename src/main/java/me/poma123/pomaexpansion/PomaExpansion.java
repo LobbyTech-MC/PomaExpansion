@@ -33,7 +33,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
     @Override
     public void onEnable() {
 
-        //Registering category
+        // Registering category
         ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
         LockedCategory category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
 
@@ -45,84 +45,24 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         SlimefunItemStack empoweredWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&eEmpowered Programmable Android &7(Woodcutter)", "", "&8\u21E8 &7Function: Woodcutting", "&8\u21E8 &7Fuel Efficiency: 8x");
         SlimefunItemStack empoweredMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&eEmpowered Programmable Android &7(Miner)", "", "&8\u21E8 &7Function: Mining", "&8\u21E8 &7Fuel Efficiency: 8x");
 
-        new MinerAndroid(category, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
-
-            @Override
-            public float getFuelEfficiency() {
-                return 1.5F;
-            }
-
-            @Override
-            public int getTier() {
-                return 2;
-            }
-
-        }
+        new MinerAndroid(category, 2, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new WoodcutterAndroid(category, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
-
-            @Override
-            public float getFuelEfficiency() {
-                return 1.5F;
-            }
-
-            @Override
-            public int getTier() {
-                return 2;
-            }
-
-        }
+        new WoodcutterAndroid(category, 2, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new MinerAndroid(category, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
-
-            @Override
-            public float getFuelEfficiency() {
-                return 8F;
-            }
-
-            @Override
-            public int getTier() {
-                return 3;
-            }
-
-        }
+        new MinerAndroid(category, 3, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new WoodcutterAndroid(category, empoweredWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
-
-            @Override
-            public float getFuelEfficiency() {
-                return 8F;
-            }
-
-            @Override
-            public int getTier() {
-                return 3;
-            }
-
-        }
+        new WoodcutterAndroid(category, 3, empoweredWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new AdvancedFarmerAndroid(category, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER_3, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
-
-            @Override
-            public float getFuelEfficiency() {
-                return 8F;
-            }
-
-            @Override
-            public int getTier() {
-                return 3;
-            }
-
-        }
+        new AdvancedFarmerAndroid(category, 3, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER_3, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
         registerResearch("advanced_miner_android", 55550, "Advanced Androids - Miner", 30, advancedMinerAndroid);
