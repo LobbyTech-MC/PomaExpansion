@@ -7,10 +7,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.AdvancedFarmerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
-import io.github.thebusybiscuit.slimefun4.implementation.setup.SlimefunItemSetup;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -21,17 +19,20 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
-import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
+    private static PomaExpansion instance;
+    public static SlimefunItemStack ADVANCED_MASS_FABRICATOR_MACHINE;
+
     @Override
     public void onEnable() {
+        instance = this;
 
         // Registering category
         ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
@@ -70,6 +71,13 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         registerResearch("empowered_miner_android", 55552, "Empowered Androids - Miner", 30, empoweredMinerAndroid);
         registerResearch("empowered_woodcutter_android", 55553, "Empowered Androids - Woodcutter", 30, empoweredWoodcutterAndroid);
         registerResearch("empowered_farmer_android", 55554, "Empowered Androids - Farmer", 30, empoweredFarmerAndroid);
+
+
+        if (getServer().getPluginManager().isPluginEnabled("LiteXpansion")) {
+            ADVANCED_MASS_FABRICATOR_MACHINE = new SlimefunItemStack("ADVANCED_MASS_FABRICATOR_MACHINE", Material.RED_CONCRETE, "&cAdvanced Mass Fabricator", "", "&fConverts &8Scrap &fto &5UU-Matter", "", "&8⇨ &e⚡ &71024 J Buffer", "&8⇨ &e⚡ &7200 J/scrap");
+
+            new AdvancedMassFabricator().register(this);
+        }
     }
 
     @Override
@@ -102,6 +110,14 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         research.register();
     }
 
+    public void registerRecipe(@Nonnull SlimefunItemStack result, @Nonnull SlimefunItemStack item, @Nonnull RecipeType recipeType) {
+        for (int i = 0; i < 9; i++) {
+            final ItemStack[] recipe = new ItemStack[9];
+            recipe[i] = item;
+            recipeType.register(recipe, result);
+        }
+    }
+
     @Deprecated
     private Category getCategory(NamespacedKey id) {
         List<Category> list = SlimefunPlugin.getRegistry().getCategories().stream().filter(c -> c.getKey().equals(id)).collect(Collectors.toList());
@@ -110,5 +126,9 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
             return list.get(0);
         }
         return null;
+    }
+
+    public static PomaExpansion getInstance() {
+        return instance;
     }
 }

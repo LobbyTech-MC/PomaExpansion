@@ -3,5 +3,6 @@ author: poma123
 main: me.poma123.pomaexpansion.PomaExpansion
 website: https://github.com/TheOld-Crafters/PomaExpansion
 depend: [Slimefun]
+softdepend: [LiteXpansion]
 version: ${project.version}
 api-version: 1.14
