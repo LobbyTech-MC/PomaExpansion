@@ -8,7 +8,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.androids.Advanced
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
+import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
+import me.poma123.pomaexpansion.updater.GitHubBuildsUpdater;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +35,12 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
     @Override
     public void onEnable() {
         instance = this;
+        
+        Config cfg = new Config(this);
+
+        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
+            new GitHubBuildsUpdater(this, getFile(), "poma123/PomaExpansion/master").start();
+        }
 
         // Registering category
         ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
