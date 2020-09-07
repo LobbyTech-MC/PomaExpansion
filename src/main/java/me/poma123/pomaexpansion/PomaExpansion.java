@@ -39,7 +39,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         Config cfg = new Config(this);
 
         if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "poma123/PomaExpansion/master").start();
+            new GitHubBuildsUpdater(this, getFile(), "TheOld-Crafters/PomaExpansion/master").start();
         }
 
         // Registering category
