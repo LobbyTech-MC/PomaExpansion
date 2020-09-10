@@ -12,10 +12,10 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.energy.ChargableBlock;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.cscorelib2.blocks.BlockPosition;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -104,7 +104,7 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
             final BlockPosition pos = new BlockPosition(b.getWorld(), b.getX(), b.getY(), b.getZ());
             int currentProgress = progress.getOrDefault(pos, 0);
 
-            if (!takePower(b)) return;
+            if (!takePower(b.getLocation())) return;
 
             // Process first tick - remove an input and put it in map.
             if (currentProgress != PROGRESS_AMOUNT) {
@@ -125,9 +125,9 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
             }
         }
 
-        private boolean takePower(@Nonnull Block b) {
-            if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return false;
-            ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
+        private boolean takePower(@Nonnull Location loc) {
+            if (getCharge(loc) < ENERGY_CONSUMPTION) return false;
+            removeCharge(loc, ENERGY_CONSUMPTION);
             return true;
         }
 
