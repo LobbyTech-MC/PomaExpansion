@@ -36,12 +36,6 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         instance = this;
         
-        Config cfg = new Config(this);
-
-        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "TheOld-Crafters/PomaExpansion/master").start();
-        }
-
         // Registering category
         ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
         LockedCategory category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
