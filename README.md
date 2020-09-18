@@ -1,4 +1,4 @@
-# PomaExpansion
+# PomaExpansion (Unofficial, I do not provide support)
 PomaExpansion is a [Slimefun4](https://github.com/TheBusyBiscuit/Slimefun4/) Addon.<br>
 You need to install Slimefun4 in order for this plugin to work.
 
