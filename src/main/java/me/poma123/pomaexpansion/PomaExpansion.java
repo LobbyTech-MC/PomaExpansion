@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.androids.Advanced
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -51,7 +52,15 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         .register(this);
 
         new WoodcutterAndroid(category, 2, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
+                new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
+            @Override
+            public void postRegister() {
+                fuelTypes.clear();
+                registerFuelType(new MachineFuel(300, new ItemStack(Material.LAVA_BUCKET)));
+                registerFuelType(new MachineFuel(200, SlimefunItems.OIL_BUCKET));
+                registerFuelType(new MachineFuel(500, SlimefunItems.FUEL_BUCKET));
+            }
+        }
         .register(this);
 
         new MinerAndroid(category, 3, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
