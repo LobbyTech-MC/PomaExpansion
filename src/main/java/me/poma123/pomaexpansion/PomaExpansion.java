@@ -30,14 +30,14 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
     private static PomaExpansion instance;
     public static SlimefunItemStack ADVANCED_MASS_FABRICATOR_MACHINE;
-
+    public static final LockedCategory category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
+    
     @Override
     public void onEnable() {
         instance = this;
 
         // Registering category
         ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
-        LockedCategory category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
 
         // Registering items
         SlimefunItemStack advancedWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&cAdvanced Programmable Android &7(Woodcutter)", "", "&8\u21E8 &7Function: Woodcutting", "&8\u21E8 &7Fuel Efficiency: 1.5x");
