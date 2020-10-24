@@ -47,7 +47,7 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
         private static final CustomItem progressItem = new CustomItem(Items.UU_MATTER.getType(), "&7Progress");
 
         public AdvancedMassFabricator() {
-            super(Items.LITEXPANSION, PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+            super(PomaExpansion.category, PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS,
                     Items.ADVANCED_MACHINE_BLOCK, Items.MASS_FABRICATOR_MACHINE, Items.ADVANCED_MACHINE_BLOCK,
                     Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS
