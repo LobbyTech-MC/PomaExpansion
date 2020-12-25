@@ -30,27 +30,11 @@
         </repository>
     </repositories>
 
-    <build>
-        <finalName>${project.name} v${project.version}</finalName>
-        <defaultGoal>clean package</defaultGoal>
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>*</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <version>1.16.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -103,9 +87,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.J3fftw1</groupId>
+            <groupId>com.github.Slimefun-Addon-Community</groupId>
             <artifactId>LiteXpansion</artifactId>
-            <version>5328a9b232</version>
+            <version>289be5f250</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -118,5 +102,28 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.Slimefun-Addon-Community</groupId>
+            <artifactId>extrautils</artifactId>
+            <version>a039b05823</version>
+        </dependency>
     </dependencies>
+
+
+    <build>
+        <finalName>${project.name} v${project.version}</finalName>
+        <defaultGoal>clean package</defaultGoal>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
