@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.core.categories.LockedCategory;
 import io.github.thebusybiscuit.slimefun4.core.researching.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import io.github.thebusybiscuit.slimefun4.implementation.items.androids.AdvancedFarmerAndroid;
+import io.github.thebusybiscuit.slimefun4.implementation.items.androids.FarmerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
 import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
@@ -72,7 +72,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new AdvancedFarmerAndroid(category, 3, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FarmerAndroid(category, 3, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER_3, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
