@@ -101,6 +101,7 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         return "https://github.com/TheOld-Crafters/PomaExpansion/issues";
     }
 
+    @Nonnull
     @Override
     public JavaPlugin getJavaPlugin() {
         return this;
