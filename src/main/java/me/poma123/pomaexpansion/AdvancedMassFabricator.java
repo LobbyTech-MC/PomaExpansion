@@ -1,5 +1,15 @@
 package me.poma123.pomaexpansion;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import dev.j3fftw.extrautils.utils.Utils;
 import dev.j3fftw.litexpansion.Items;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
@@ -14,14 +24,6 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.cscorelib2.blocks.BlockPosition;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlock, EnergyNetComponent {
 

@@ -37,16 +37,16 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         // Registering category
-        ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&cPomaExpansion");
+        ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&c超级机器人");
         category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
 
         // Registering items
-        SlimefunItemStack advancedWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&cAdvanced Programmable Android &7(Woodcutter)", "", "&8\u21E8 &7Function: Woodcutting", "&8\u21E8 &7Fuel Efficiency: 1.5x");
-        SlimefunItemStack advancedMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&cAdvanced Programmable Android &7(Miner)", "", "&8\u21E8 &7Function: Mining", "&8\u21E8 &7Fuel Efficiency: 1.5x");
+        SlimefunItemStack advancedWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&c高级安卓机器人 &7(伐木工)", "", "&8\u21E8 &7功能: 伐木", "&8\u21E8 &7燃料效率: 1.5x");
+        SlimefunItemStack advancedMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&c高级安卓机器人 Android &7(矿工)", "", "&8\u21E8 &7功能: 挖矿", "&8\u21E8 &7燃料效率: 1.5x");
 
-        SlimefunItemStack empoweredFarmerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_FARMER", HeadTexture.PROGRAMMABLE_ANDROID_FARMER, "&eEmpowered Programmable Android &7(Farmer)", "", "&8\u21E8 &7Function: Farming", "&8\u21E8 &7Fuel Efficiency: 8x", "&8\u21E8 &7Can also harvest Plants from ExoticGarden");
-        SlimefunItemStack empoweredWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&eEmpowered Programmable Android &7(Woodcutter)", "", "&8\u21E8 &7Function: Woodcutting", "&8\u21E8 &7Fuel Efficiency: 8x");
-        SlimefunItemStack empoweredMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&eEmpowered Programmable Android &7(Miner)", "", "&8\u21E8 &7Function: Mining", "&8\u21E8 &7Fuel Efficiency: 8x");
+        SlimefunItemStack empoweredFarmerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_FARMER", HeadTexture.PROGRAMMABLE_ANDROID_FARMER, "&e超级安卓机器人 &7(农民)", "", "&8\u21E8 &7功能: 种植", "&8\u21E8 &7燃料效率: 8x", "&8\u21E8 &7可以收获和种植异域花园作物");
+        SlimefunItemStack empoweredWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&e超级安卓机器人 &7(伐木工)", "", "&8\u21E8 &7功能: 伐木", "&8\u21E8 &7燃料效率: 8x");
+        SlimefunItemStack empoweredMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&e超级安卓机器人 &7(矿工)", "", "&8\u21E8 &7功能: 挖矿", "&8\u21E8 &7燃料效率: 8x");
 
         new MinerAndroid(category, 2, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
@@ -76,15 +76,15 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
                 new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER_3, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        registerResearch("advanced_miner_android", 55550, "Advanced Androids - Miner", 30, advancedMinerAndroid);
-        registerResearch("advanced_woodcutter_android", 55551, "Advanced Androids - Woodcutter", 30, advancedWoodcutterAndroid);
-        registerResearch("empowered_miner_android", 55552, "Empowered Androids - Miner", 30, empoweredMinerAndroid);
-        registerResearch("empowered_woodcutter_android", 55553, "Empowered Androids - Woodcutter", 30, empoweredWoodcutterAndroid);
-        registerResearch("empowered_farmer_android", 55554, "Empowered Androids - Farmer", 30, empoweredFarmerAndroid);
+        registerResearch("advanced_miner_android", 55550, "高级安卓机器人 -矿工", 30, advancedMinerAndroid);
+        registerResearch("advanced_woodcutter_android", 55551, "高级安卓机器人 - 伐木工", 30, advancedWoodcutterAndroid);
+        registerResearch("empowered_miner_android", 55552, "超级安卓机器人 - 矿工", 30, empoweredMinerAndroid);
+        registerResearch("empowered_woodcutter_android", 55553, "超级安卓机器人 - 伐木工", 30, empoweredWoodcutterAndroid);
+        registerResearch("empowered_farmer_android", 55554, "超级安卓机器人 - 农民", 30, empoweredFarmerAndroid);
 
 
         if (getServer().getPluginManager().isPluginEnabled("LiteXpansion")) {
-            ADVANCED_MASS_FABRICATOR_MACHINE = new SlimefunItemStack("ADVANCED_MASS_FABRICATOR_MACHINE", Material.RED_CONCRETE, "&cAdvanced Mass Fabricator", "", "&fConverts &8Scrap &fto &5UU-Matter", "", "&8⇨ &e⚡ &71024 J Buffer", "&8⇨ &e⚡ &7200 J/scrap");
+            ADVANCED_MASS_FABRICATOR_MACHINE = new SlimefunItemStack("ADVANCED_MASS_FABRICATOR_MACHINE", Material.RED_CONCRETE, "&c高级废料厂", "", "&f将 &8废料 &f转化成 &5UU物质", "", "&8⇨ &e⚡ &71024 J 可储存", "&8⇨ &e⚡ &7200 J/个废料");
 
             new AdvancedMassFabricator().register(this);
         }
