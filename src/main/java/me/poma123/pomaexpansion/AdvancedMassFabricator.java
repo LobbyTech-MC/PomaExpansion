@@ -1,14 +1,15 @@
 package me.poma123.pomaexpansion;
 
+import dev.j3fftw.extrautils.interfaces.InventoryBlock;
 import dev.j3fftw.extrautils.utils.Utils;
 import dev.j3fftw.litexpansion.Items;
+import dev.j3fftw.litexpansion.machine.api.PoweredMachine;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -23,47 +24,43 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlock, EnergyNetComponent {
+public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlock, EnergyNetComponent, PoweredMachine {
 
-        public static final RecipeType RECIPE_TYPE = new RecipeType(
-                new NamespacedKey(PomaExpansion.getInstance(), "advanced_mass_fabricator"), PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE
-        );
+    public static final RecipeType RECIPE_TYPE = new RecipeType(
+        new NamespacedKey(PomaExpansion.getInstance(), "advanced_mass_fabricator"), PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE
+    );
 
-        private static final int[] BORDER = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
-        public static final int ENERGY_CONSUMPTION = 200;
-        public static final int CAPACITY = 1024;
+    public static final int ENERGY_CONSUMPTION = 200;
+    public static final int CAPACITY = 1024;
+    private static final int[] INPUT_SLOTS = new int[] { 10, 11 };
+    private static final int OUTPUT_SLOT = 15;
+    private static final int PROGRESS_SLOT = 13;
+    private static final int PROGRESS_AMOUNT = 90;
 
-        private static final int[] INPUT_SLOTS = new int[] {10, 11};
-        private static final int OUTPUT_SLOT = 15;
-        private static final int PROGRESS_SLOT = 13;
-        private static final int PROGRESS_AMOUNT = 90; // Divide by 2 for seconds it takes
+    private static final Map<BlockPosition, Integer> progress = new HashMap<>();
 
-        private static final Map<BlockPosition, Integer> progress = new HashMap<>();
+    private static final CustomItem progressItem = new CustomItem(Items.UU_MATTER.getType(), "&7Progress");
 
-        private static final CustomItem progressItem = new CustomItem(Items.UU_MATTER.getType(), "&7Progress");
+    public AdvancedMassFabricator() {
+        super(PomaExpansion.category, PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS,
+                Items.ADVANCED_MACHINE_BLOCK, Items.MASS_FABRICATOR_MACHINE, Items.ADVANCED_MACHINE_BLOCK,
+                Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS
+        });
+        setupInv();
 
-        public AdvancedMassFabricator() {
-            super(PomaExpansion.category, PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS,
-                    Items.ADVANCED_MACHINE_BLOCK, Items.MASS_FABRICATOR_MACHINE, Items.ADVANCED_MACHINE_BLOCK,
-                    Items.REINFORCED_GLASS, Items.MAG_THOR, Items.REINFORCED_GLASS
-            });
-            setupInv();
-
-            PomaExpansion.getInstance().registerRecipe(Items.UU_MATTER, Items.SCRAP, AdvancedMassFabricator.RECIPE_TYPE);
-        }
+        PomaExpansion.getInstance().registerRecipe(Items.UU_MATTER, Items.SCRAP, AdvancedMassFabricator.RECIPE_TYPE);
+    }
 
     private void setupInv() {
         createPreset(this, "&4Advanced Mass Fabricator", blockMenuPreset -> {
-            for (int i : BORDER) {
+            for (int i = 0; i < 27; i++) {
+                if (i == INPUT_SLOTS[0] || i == INPUT_SLOTS[1]) continue;
                 blockMenuPreset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
             }
-
             Utils.putOutputSlot(blockMenuPreset, OUTPUT_SLOT);
-
             blockMenuPreset.addItem(PROGRESS_SLOT, progressItem);
             blockMenuPreset.addMenuClickHandler(PROGRESS_SLOT, ChestMenuUtils.getEmptyClickHandler());
-
         });
     }
 
@@ -91,8 +88,8 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
         @Nullable ItemStack input2 = inv.getItemInSlot(INPUT_SLOTS[1]);
         @Nullable final ItemStack output = inv.getItemInSlot(OUTPUT_SLOT);
         if (output != null && (output.getType() != Items.UU_MATTER.getType()
-                || output.getAmount() == output.getMaxStackSize()
-                || !Items.UU_MATTER.getItem().isItem(output))) {
+            || output.getAmount() == output.getMaxStackSize()
+            || !Items.UU_MATTER.getItem().isItem(output))) {
             return;
         }
 
@@ -121,7 +118,7 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
                 inv.consumeItem(INPUT_SLOTS[1]);
             progress.put(pos, ++currentProgress);
             ChestMenuUtils.updateProgressbar(inv, PROGRESS_SLOT, PROGRESS_AMOUNT - currentProgress,
-                    PROGRESS_AMOUNT, progressItem);
+                PROGRESS_AMOUNT, progressItem);
         } else {
             if (output != null && output.getAmount() > 0) {
                 output.setAmount(output.getAmount() + 1);
@@ -134,10 +131,10 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
     }
 
     private boolean takePower(@Nonnull Block b) {
-        if (getCharge(b.getLocation()) < ENERGY_CONSUMPTION) {
+        if (getCharge(b.getLocation()) < getFinalEnergyConsumption()) {
             return false;
         }
-        removeCharge(b.getLocation(), ENERGY_CONSUMPTION);
+        removeCharge(b.getLocation(), getFinalEnergyConsumption());
         return true;
     }
 
@@ -159,6 +156,11 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {OUTPUT_SLOT};
+        return new int[] { OUTPUT_SLOT };
+    }
+
+    @Override
+    public int getDefaultEnergyConsumption() {
+        return ENERGY_CONSUMPTION;
     }
 }
