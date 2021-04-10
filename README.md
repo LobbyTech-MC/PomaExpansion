@@ -19,6 +19,3 @@ This is not an official addon.
 
 Download development builds from here:<br>
 [Development Builds](https://github.com/TheOld-Crafters/PomaExpansion/releases)
-
-## Open Source
-This Project is open-source and licensed under the [MIT License](https://github.com/TheOld-Crafters/PomaExpansion/blob/master/LICENSE)
