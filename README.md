@@ -2,7 +2,7 @@
 PomaExpansion is a [Slimefun4](https://github.com/TheBusyBiscuit/Slimefun4/) Addon.<br>
 You need to install Slimefun4 in order for this plugin to work.
 
-PomaExpansion is a tiny Slimefun4 Addon that adds missing Advanced, Empowered Programmable Androids and Advanced Mass Fabricator.<br>
+PomaExpansion is a tiny Slimefun4 Addon that adds missing Advanced, Empowered and Programmable Androids<br>
 
 
 ## Content
