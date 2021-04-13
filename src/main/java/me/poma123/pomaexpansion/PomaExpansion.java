@@ -81,13 +81,6 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         registerResearch("empowered_miner_android", 55552, "超级安卓机器人 - 矿工", 30, empoweredMinerAndroid);
         registerResearch("empowered_woodcutter_android", 55553, "超级安卓机器人 - 伐木工", 30, empoweredWoodcutterAndroid);
         registerResearch("empowered_farmer_android", 55554, "超级安卓机器人 - 农民", 30, empoweredFarmerAndroid);
-
-
-        if (getServer().getPluginManager().isPluginEnabled("LiteXpansion")) {
-            ADVANCED_MASS_FABRICATOR_MACHINE = new SlimefunItemStack("ADVANCED_MASS_FABRICATOR_MACHINE", Material.RED_CONCRETE, "&c高级废料厂", "", "&f将 &8废料 &f转化成 &5UU物质", "", "&8⇨ &e⚡ &71024 J 可储存", "&8⇨ &e⚡ &7200 J/个废料");
-
-            new AdvancedMassFabricator().register(this);
-        }
     }
 
     @Override
