@@ -13,19 +13,38 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/24104/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1u2/89a670596c98e416fb2583c08ae34cc5c3ce2097/annotations-3.0.1u2.jar" sourcepath="C:/Users/24104/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1u2/3f8905fee497bc64999ea458285311220cfa92bf/annotations-3.0.1u2-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle_used_by_scope" value="test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/NewCustomCuiLianPro/dist/lib/spigot-1.16.5.jar"/>
+	<classpathentry kind="src" path="/Slimefun"/>
+	<classpathentry kind="src" path="/LiteXpansion"/>
+	<classpathentry kind="lib" path="C:/Users/24104/.m2/repository/com/github/TheBusyBiscuit/Slimefun4/RC-21/Slimefun4-RC-21.jar" sourcepath="C:/Users/24104/.m2/repository/com/github/TheBusyBiscuit/Slimefun4/RC-21/Slimefun4-RC-21-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.github.TheBusyBiscuit"/>
+			<attribute name="maven.artifactId" value="Slimefun4"/>
+			<attribute name="maven.version" value="RC-21"/>
+			<attribute name="maven.scope" value="provided"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

@@ -10,8 +10,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import dev.j3fftw.extrautils.utils.Utils;
 import dev.j3fftw.litexpansion.Items;
+import dev.j3fftw.litexpansion.utils.Utils;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -22,8 +22,8 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.cscorelib2.blocks.BlockPosition;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import net.minecraft.server.v1_16_R3.BlockPosition;
 
 public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlock, EnergyNetComponent {
 
@@ -42,7 +42,7 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
 
         private static final Map<BlockPosition, Integer> progress = new HashMap<>();
 
-        private static final CustomItem progressItem = new CustomItem(Items.UU_MATTER.getType(), "&7Progress");
+        private static final CustomItem progressItem = new CustomItem(Items.UU_MATTER.getType(), "&7进度");
 
         public AdvancedMassFabricator() {
             super(PomaExpansion.category, PomaExpansion.ADVANCED_MASS_FABRICATOR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -56,7 +56,7 @@ public class AdvancedMassFabricator extends SlimefunItem implements InventoryBlo
         }
 
     private void setupInv() {
-        createPreset(this, "&4Advanced Mass Fabricator", blockMenuPreset -> {
+        createPreset(this, "&4高级废料厂", blockMenuPreset -> {
             for (int i : BORDER) {
                 blockMenuPreset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
             }
