@@ -1,8 +1,11 @@
 /bin/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /target/
 =======
+=======
+>>>>>>> parent of ca8fd8d (Merge remote-tracking branch 'upstream/master')
 =======
 >>>>>>> parent of ca8fd8d (Merge remote-tracking branch 'upstream/master')
 /.settings/
@@ -14,6 +17,9 @@
 dependency-reduced-pom.xml
 .DS_Store
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ca8fd8d (Merge remote-tracking branch 'upstream/master')
+=======
 >>>>>>> parent of ca8fd8d (Merge remote-tracking branch 'upstream/master')
 =======
 >>>>>>> parent of ca8fd8d (Merge remote-tracking branch 'upstream/master')
