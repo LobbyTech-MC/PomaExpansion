@@ -16,4 +16,10 @@ PomaExpansion is a tiny Slimefun4 Addon that adds missing Advanced and Empowered
 This is not an official addon.
 
 Download development builds from here:<br>
-[Development Builds](https://github.com/TheOld-Crafters/PomaExpansion/releases)
+[Development Builds](https://poma123.github.io/builds/TheOld-Crafters/PomaExpansion/master/)
+
+<p align="center">
+  <a href="https://poma123.github.io/builds/TheOld-Crafters/PomaExpansion/master/">
+    <img src="https://poma123.github.io/builds/TheOld-Crafters/PomaExpansion/master/badge.svg" alt="Build Server"/>
+  </a>
+</p>
