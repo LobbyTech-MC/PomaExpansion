@@ -1,44 +1,43 @@
 package me.poma123.pomaexpansion;
 
-import io.github.thebusybiscuit.slimefun4.core.categories.LockedCategory;
-import io.github.thebusybiscuit.slimefun4.core.researching.Research;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import io.github.thebusybiscuit.slimefun4.implementation.items.androids.FarmerAndroid;
-import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
-import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
-import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
-import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.stream.Collectors;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.androids.FarmerAndroid;
+import io.github.thebusybiscuit.slimefun4.implementation.items.androids.MinerAndroid;
+import io.github.thebusybiscuit.slimefun4.implementation.items.androids.WoodcutterAndroid;
+import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 
 public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
 
     private static PomaExpansion instance;
     public static SlimefunItemStack ADVANCED_MASS_FABRICATOR_MACHINE;
-    public static LockedCategory category;
+    public static LockedItemGroup itemgroup;
     
     @Override
     public void onEnable() {
         instance = this;
 
         // Registering category
-        ItemStack categoryItem = new CustomItem(SkullItem.fromHash("5545078a2f72f43ac629f5277eb7857d05d0041e5af77f24fec81f4bf465cb65"), "&c高级安卓机器人");
-        category = new LockedCategory(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(SlimefunPlugin.instance(), "basic_machines"));
+        ItemStack categoryItem = new SlimefunItemStack("PE_ITEMGROUP", HeadTexture.PROGRAMMABLE_ANDROID, "&c高级安卓机器人");
+        itemgroup = new LockedItemGroup(new NamespacedKey(this, "poma_expansion"), categoryItem, 4, new NamespacedKey(Slimefun.instance(), "basic_machines"));
 
         // Registering items
         SlimefunItemStack advancedWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_2_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&c高级安卓机器人 &7(伐木工)", "", "&8\u21E8 &7功能: 伐木", "&8\u21E8 &7燃料效率: 1.5x");
@@ -48,11 +47,11 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         SlimefunItemStack empoweredWoodcutterAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_WOODCUTTER", HeadTexture.PROGRAMMABLE_ANDROID_WOODCUTTER, "&e超级安卓机器人 &7(伐木工)", "", "&8\u21E8 &7功能: 伐木", "&8\u21E8 &7燃料效率: 8x");
         SlimefunItemStack empoweredMinerAndroid = new SlimefunItemStack("PROGRAMMABLE_ANDROID_3_MINER", HeadTexture.PROGRAMMABLE_ANDROID_MINER, "&e超级安卓机器人 &7(矿工)", "", "&8\u21E8 &7功能: 挖矿", "&8\u21E8 &7燃料效率: 8x");
 
-        new MinerAndroid(category, 2, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new MinerAndroid(itemgroup, 2, advancedMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new WoodcutterAndroid(category, 2, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new WoodcutterAndroid(itemgroup, 2, advancedWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_2, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null}) {
             @Override
             public void postRegister() {
@@ -64,15 +63,15 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
         }
         .register(this);
 
-        new MinerAndroid(category, 3, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new MinerAndroid(itemgroup, 3, empoweredMinerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_PICKAXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new WoodcutterAndroid(category, 3, empoweredWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new WoodcutterAndroid(itemgroup, 3, empoweredWoodcutterAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.DIAMOND_AXE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_AXE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
-        new FarmerAndroid(category, 3, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FarmerAndroid(itemgroup, 3, empoweredFarmerAndroid, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GPS_TRANSMITTER_3, null, new ItemStack(Material.DIAMOND_HOE), SlimefunItems.PROGRAMMABLE_ANDROID_3, new ItemStack(Material.DIAMOND_HOE), null, SlimefunItems.ELECTRIC_MOTOR, null})
         .register(this);
 
@@ -123,8 +122,8 @@ public class PomaExpansion extends JavaPlugin implements SlimefunAddon {
     }
 
     @Deprecated
-    private Category getCategory(NamespacedKey id) {
-        List<Category> list = SlimefunPlugin.getRegistry().getCategories().stream().filter(c -> c.getKey().equals(id)).collect(Collectors.toList());
+    private ItemGroup getItemGroup(NamespacedKey id) {
+        List<ItemGroup> list = Slimefun.getRegistry().getAllItemGroups().stream().filter(c -> c.getKey().equals(id)).collect(Collectors.toList());
 
         if (!list.isEmpty()) {
             return list.get(0);
